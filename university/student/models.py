@@ -1,3 +1,14 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
 
-# Create your models here.
+
+class Student(models.Model):
+    first_name = models.CharField(max_length=40)
+    last_name = models.CharField(max_length=40)
+    age = models.PositiveIntegerField(validators=[MaxValueValidator(120)])
+
+    def __repr__(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

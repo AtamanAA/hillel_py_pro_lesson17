@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+<div style="margin: 32px">
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <h1>Students list</h1>
+
+    <table style="border: 2px solid black; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid black;">ID</th>
+            <th style="border: 1px solid black;">First name</th>
+            <th style="border: 1px solid black;">Last name</th>
+            <th style="border: 1px solid black;">Age</th>
+        </tr>
+        {% for student in students_list %}
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">{{ student.id }}</td>
+            <td style="border: 1px solid black;">{{ student.first_name }}</td>
+            <td style="border: 1px solid black;">{{ student.last_name }}</td>
+            <td style="border: 1px solid black;">{{ student.age }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{% url 'create_student' %}">Create new student</a></p>
+
+</div>
+</body>
+</html>
