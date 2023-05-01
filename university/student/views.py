@@ -9,7 +9,9 @@ from .forms import StudentForm
 
 def all_students(request):
     students_list = list(Student.objects.all().order_by("id").values())
-    return render(request, "student/all_students.html", {"students_list": students_list})
+    return render(
+        request, "student/all_students.html", {"students_list": students_list}
+    )
 
 
 def create_student(request):
@@ -30,14 +32,18 @@ def edit_student(request, student_id):
     try:
         student = Student.objects.get(pk=student_id)
     except Student.DoesNotExist:
-        messages.error(request, f"Student with ID: {student_id} doesn't exist. Try another ID!")
+        messages.error(
+            request, f"Student with ID: {student_id} doesn't exist. Try another ID!"
+        )
         return HttpResponseRedirect(reverse("all_students"))
     if request.method == "POST":
         if "edit" in request.POST:
             form = StudentForm(request.POST, instance=student)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
-                return HttpResponseRedirect(reverse("edit_student", args=[form.instance.id]))
+                return HttpResponseRedirect(
+                    reverse("edit_student", args=[form.instance.id])
+                )
 
             # Update groups for student
             groups = list(form.cleaned_data["group"])
@@ -46,7 +52,9 @@ def edit_student(request, student_id):
                 student.group.add(group)
 
             form.save()
-            messages.success(request, f"Student with ID {student_id} update successful!")
+            messages.success(
+                request, f"Student with ID {student_id} update successful!"
+            )
             return HttpResponseRedirect(reverse("all_students"))
         elif "delete" in request.POST:
             student.delete()

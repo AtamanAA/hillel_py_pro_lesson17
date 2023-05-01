@@ -3,7 +3,12 @@ from .models import Student
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("id", "first_name", "last_name", "age",)
+    list_display = (
+        "id",
+        "first_name",
+        "last_name",
+        "age",
+    )
 
 
 admin.site.register(Student, StudentAdmin)

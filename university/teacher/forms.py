@@ -9,7 +9,13 @@ class DateInputCustom(DateInput):
 class TeacherForm(ModelForm):
     class Meta:
         model = Teacher
-        fields = ["first_name", "last_name", "patronymic", "birthday", "subject", ]
+        fields = [
+            "first_name",
+            "last_name",
+            "patronymic",
+            "birthday",
+            "subject",
+        ]
 
         widgets = {
             "birthday": DateInputCustom(),
@@ -19,4 +25,6 @@ class TeacherForm(ModelForm):
 class SubjectForm(ModelForm):
     class Meta:
         model = Subject
-        fields = ["name", ]
+        fields = [
+            "name",
+        ]

@@ -7,7 +7,12 @@ from group.models import Group
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ["first_name", "last_name", "age", "group", ]
+        fields = [
+            "first_name",
+            "last_name",
+            "age",
+            "group",
+        ]
 
     group = ModelMultipleChoiceField(
         queryset=Group.objects.all(),
