@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+</head>
+<body>
+
+<div style="margin: 32px">
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <h1>Groups list</h1>
+
+    <table style="border: 2px solid black; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid black;">ID</th>
+            <th style="border: 1px solid black;">Name</th>
+            <th style="border: 1px solid black;">Teacher</th>
+            <th style="border: 1px solid black;">Students in group</th>
+        </tr>
+        {% for group in groups_list %}
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">{{ group.id }}</td>
+            <td style="border: 1px solid black;">{{ group.name }}</td>
+            <td style="border: 1px solid black;">{{ group.teacher }}</td>
+            <td style="border: 1px solid black;">{{ group.students_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{% url 'create_group' %}">Create new group</a></p>
+</div>
+</body>
+</html>

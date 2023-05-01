@@ -9,8 +9,8 @@ class Group(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     students = models.ManyToManyField(Student, related_name='group', blank=True)
 
-    def __repr__(self):
-        return f"{self.name}"
-
-    def __str__(self):
-        return f"{self.name}"
+    # def __repr__(self):
+    #     return f"{self.name}"
+    #
+    # def __str__(self):
+    #     return f"{self.name}"
