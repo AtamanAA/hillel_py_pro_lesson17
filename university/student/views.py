@@ -37,7 +37,14 @@ def edit_student(request, student_id):
             form = StudentForm(request.POST, instance=student)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
-                return HttpResponseRedirect(reverse("edit_student"))
+                return HttpResponseRedirect(reverse("edit_student", args=[form.instance.id]))
+
+            # Update groups for student
+            groups = list(form.cleaned_data["group"])
+            student.group.clear()
+            for group in groups:
+                student.group.add(group)
+
             form.save()
             messages.success(request, f"Student with ID {student_id} update successful!")
             return HttpResponseRedirect(reverse("all_students"))
@@ -46,5 +53,6 @@ def edit_student(request, student_id):
             messages.success(request, f"Student with ID {student_id} delete!")
             return redirect("all_students")
     else:
-        form = StudentForm(instance=student)
+        initial_groups = [group.id for group in student.group.all()]
+        form = StudentForm(instance=student, initial={"group": initial_groups})
         return render(request, "student/edit.html", {"form": form})

@@ -47,7 +47,7 @@ def edit_teacher(request, teacher_id):
             form = TeacherForm(request.POST, instance=teacher)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
-                return HttpResponseRedirect(reverse("edit_teacher"))
+                return HttpResponseRedirect(reverse("edit_teacher", args=[form.instance.id]))
             form.save()
             messages.success(request, f"Teacher with ID {teacher_id} update successful!")
             return HttpResponseRedirect(reverse("all_teachers"))
@@ -90,7 +90,7 @@ def edit_subject(request, subject_id):
             form = SubjectForm(request.POST, instance=subject)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
-                return HttpResponseRedirect(reverse("edit_subject"))
+                return HttpResponseRedirect(reverse("edit_subject", args=[form.instance.id]))
             form.save()
             messages.success(request, f"Subject with ID {subject_id} update successful!")
             return HttpResponseRedirect(reverse("all_subjects"))

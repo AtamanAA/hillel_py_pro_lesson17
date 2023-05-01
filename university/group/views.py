@@ -45,7 +45,7 @@ def edit_group(request, group_id):
             form = GroupForm(request.POST, instance=group)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
-                return HttpResponseRedirect(reverse("edit_group"))
+                return HttpResponseRedirect(reverse("edit_group" , args=[form.instance.id]))
             form.save()
             messages.success(request, f"Group with ID {group_id} update successful!")
             return HttpResponseRedirect(reverse("all_groups"))
