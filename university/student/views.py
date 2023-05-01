@@ -9,7 +9,7 @@ from .forms import StudentForm
 
 def all_students(request):
     students_list = list(Student.objects.all().order_by("id").values())
-    return render(request, "student/student_show_all.html", {"students_list": students_list})
+    return render(request, "student/all_students.html", {"students_list": students_list})
 
 
 def create_student(request):
@@ -23,7 +23,7 @@ def create_student(request):
         return HttpResponseRedirect(reverse("all_students"))
     else:
         form = StudentForm()
-    return render(request, "student/student_create.html", {"form": form})
+    return render(request, "student/create.html", {"form": form})
 
 
 def edit_student(request, student_id):
@@ -47,4 +47,4 @@ def edit_student(request, student_id):
             return redirect("all_students")
     else:
         form = StudentForm(instance=student)
-        return render(request, "student/student_edit.html", {"form": form})
+        return render(request, "student/edit.html", {"form": form})

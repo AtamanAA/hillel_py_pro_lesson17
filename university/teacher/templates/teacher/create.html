@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher create</title>
+</head>
+<body>
+    <div style="margin: 32px">
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h1>Add new teacher</h1>
+        <form action="{% url 'create_teacher' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p><input type="submit" value="Create teacher"></p>
+        </form>
+        <p><a href="{% url 'create_subject' %}">Create new subject</a></p>
+        <p><a href="{% url 'all_teachers' %}">Back to teachers page</a></p>
+    </div>
+</body>
+</html>

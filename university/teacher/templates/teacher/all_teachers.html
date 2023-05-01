@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teachers</title>
+</head>
+<body>
+
+<div style="margin: 32px">
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <h1>Teachers list</h1>
+
+    <table style="border: 2px solid black; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid black;">ID</th>
+            <th style="border: 1px solid black;">First name</th>
+            <th style="border: 1px solid black;">Last name</th>
+            <th style="border: 1px solid black;">Patronymic</th>
+            <th style="border: 1px solid black;">Birthday</th>
+            <th style="border: 1px solid black;">Subject</th>
+        </tr>
+        {% for teacher in teachers_list %}
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">{{ teacher.id }}</td>
+            <td style="border: 1px solid black;">{{ teacher.first_name }}</td>
+            <td style="border: 1px solid black;">{{ teacher.last_name }}</td>
+            <td style="border: 1px solid black;">{{ teacher.patronymic }}</td>
+            <td style="border: 1px solid black;">{{ teacher.birthday }}</td>
+            <td style="border: 1px solid black;">{{ teacher.subject }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{% url 'create_teacher' %}">Create new teacher</a></p>
+    <p><a href="{% url 'all_subjects' %}">Show all subjects</a></p>
+    <p><a href="{% url 'create_subject' %}">Create new subject</a></p>
+</div>
+</body>
+</html>
