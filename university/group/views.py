@@ -79,7 +79,6 @@ def student_to_group(request):
                 messages.error(request, "Form isn't valid. Try again!")
                 return HttpResponseRedirect(reverse("student_to_group"))
 
-            # Add student to groups
             group = form.cleaned_data["group"]
             students = list(form.cleaned_data["students"])
             group.students.clear()

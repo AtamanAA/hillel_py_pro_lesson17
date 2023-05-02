@@ -45,7 +45,6 @@ def edit_student(request, student_id):
                     reverse("edit_student", args=[form.instance.id])
                 )
 
-            # Update groups for student
             groups = list(form.cleaned_data["group"])
             student.group.clear()
             for group in groups:
