@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import Group
-from .forms import GroupForm
+from .forms import GroupForm, StudentToGroupForm
 
 
 def all_groups(request):
@@ -60,3 +60,34 @@ def edit_group(request, group_id):
     else:
         form = GroupForm(instance=group)
         return render(request, "group/edit.html", {"form": form})
+
+
+def student_to_group(request):
+    if request.method == "POST":
+        if "refresh" in request.POST:
+            initial_group = request.POST["group"]
+            group = Group.objects.get(pk=initial_group)
+            initial_students = list(group.students.all())
+            form = StudentToGroupForm(
+                initial={"group": initial_group, "students": initial_students}
+            )
+            return render(request, "group/student_to_group.html", {"form": form})
+
+        elif "update" in request.POST:
+            form = StudentToGroupForm(request.POST)
+            if not form.is_valid():
+                messages.error(request, "Form isn't valid. Try again!")
+                return HttpResponseRedirect(reverse("student_to_group"))
+
+            # Add student to groups
+            group = form.cleaned_data["group"]
+            students = list(form.cleaned_data["students"])
+            group.students.clear()
+            for student in students:
+                student.group.add(group)
+
+            messages.success(request, "Student add to group successful!")
+            return HttpResponseRedirect(reverse("all_groups"))
+    else:
+        form = StudentToGroupForm()
+        return render(request, "group/student_to_group.html", {"form": form})

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student to group</title>
+</head>
+<body>
+    <div style="margin: 32px">
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h1>Add student to group</h1>
+        <form action="{% url 'student_to_group' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p><input type="submit" name="refresh" value="Refresh students in choice group"></p>
+            <p><input type="submit" name="update" value="Update students in choice group"></p>
+        </form>
+        <p><a href="{% url 'all_groups' %}">Back to group page</a></p>
+    </div>
+</body>
+</html>
