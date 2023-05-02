@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Students</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div style="margin: 32px">
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {{message}}
-            {% endfor %}
-        {% endif %}
-    </div>
+{% block title %}Students{% endblock %}
 
+{% block content %}
     <h1>Students list</h1>
 
     <table style="border: 2px solid black; border-collapse: collapse;">
@@ -34,7 +22,4 @@
         {% endfor %}
     </table>
     <p><a href="{% url 'create_student' %}">Create new student</a></p>
-
-</div>
-</body>
-</html>
+{% endblock %}

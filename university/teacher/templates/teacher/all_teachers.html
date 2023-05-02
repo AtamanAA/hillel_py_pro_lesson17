@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Teachers</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div style="margin: 32px">
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {{message}}
-            {% endfor %}
-        {% endif %}
-    </div>
+{% block title %}Teachers{% endblock %}
 
+{% block content %}
     <h1>Teachers list</h1>
 
     <table style="border: 2px solid black; border-collapse: collapse;">
@@ -40,6 +28,4 @@
     <p><a href="{% url 'create_teacher' %}">Create new teacher</a></p>
     <p><a href="{% url 'all_subjects' %}">Show all subjects</a></p>
     <p><a href="{% url 'create_subject' %}">Create new subject</a></p>
-</div>
-</body>
-</html>
+{% endblock %}

@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student create</title>
-</head>
-<body>
-    <div style="margin: 32px">
-        <div>
-            {% if messages %}
-                {% for message in messages %}
-                    {{message}}
-                {% endfor %}
-            {% endif %}
-        </div>
-        <h1>Add new student</h1>
-        <form action="{% url 'create_student' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <p><input type="submit" value="Create student"></p>
-        </form>
-        <p><a href="{% url 'all_students' %}">Back to students page</a></p>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Student create{% endblock %}
+
+{% block content %}
+    <h1>Add new student</h1>
+    <form action="{% url 'create_student' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Create student"></p>
+    </form>
+    <p><a href="{% url 'all_students' %}">Back to students page</a></p>
+{% endblock %}

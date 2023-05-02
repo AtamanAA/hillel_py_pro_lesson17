@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Subjects</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div style="margin: 32px">
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {{message}}
-            {% endfor %}
-        {% endif %}
-    </div>
+{% block title %}Subjects{% endblock %}
 
-    <h1>Teachers list</h1>
+{% block content %}
+    <h1>Subjects list</h1>
 
     <table style="border: 2px solid black; border-collapse: collapse;">
         <tr>
@@ -31,6 +19,4 @@
     </table>
     <p><a href="{% url 'create_subject' %}">Create new subject</a></p>
     <p><a href="{% url 'all_teachers' %}">Back to teachers page</a></p>
-</div>
-</body>
-</html>
+{% endblock %}
