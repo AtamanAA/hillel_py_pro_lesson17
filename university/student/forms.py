@@ -31,4 +31,6 @@ class StudentForm(ModelForm):
             raise ValidationError("Phone isn't valid!")
         if not phonenumbers.is_valid_number(phone):
             raise ValidationError("Phone isn't valid!")
-        return phonenumbers.format_number(phone, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+        return phonenumbers.format_number(
+            phone, phonenumbers.PhoneNumberFormat.INTERNATIONAL
+        )
