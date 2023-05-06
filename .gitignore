@@ -133,3 +133,6 @@ dmypy.json
 
 # that should not change!
 # used in self-checking
+
+# Log-file
+.log/log_file.csv

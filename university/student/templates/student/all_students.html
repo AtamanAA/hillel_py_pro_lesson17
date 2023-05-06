@@ -11,6 +11,7 @@
             <th style="border: 1px solid black;">First name</th>
             <th style="border: 1px solid black;">Last name</th>
             <th style="border: 1px solid black;">Age</th>
+            <th style="border: 1px solid black;">Phone</th>
         </tr>
         {% for student in students_list %}
         <tr style="border: 1px solid black;">
@@ -18,6 +19,7 @@
             <td style="border: 1px solid black;">{{ student.first_name }}</td>
             <td style="border: 1px solid black;">{{ student.last_name }}</td>
             <td style="border: 1px solid black;">{{ student.age }}</td>
+            <td style="border: 1px solid black;">{{ student.phone }}</td>
         </tr>
         {% endfor %}
     </table>
