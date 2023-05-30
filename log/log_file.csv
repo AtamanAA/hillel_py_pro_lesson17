@@ -10,3 +10,8 @@ execution_time,request_path,request_method
 2023-05-30 21:52:19.377011+00:00,/teacher/create-subject/,GET
 2023-05-30 21:52:21.233980+00:00,/teacher/create-subject/,POST
 2023-05-30 21:52:21.258979+00:00,/teacher/subject,GET
+2023-05-30 22:13:08.682349+00:00,/,GET
+2023-05-30 22:13:10.633516+00:00,/teacher/subject,GET
+2023-05-30 22:13:11.794516+00:00,/teacher/create-subject/,GET
+2023-05-30 22:13:13.147239+00:00,/teacher/create-subject/,POST
+2023-05-30 22:13:13.173153+00:00,/teacher/subject,GET
