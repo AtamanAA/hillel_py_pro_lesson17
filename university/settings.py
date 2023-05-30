@@ -58,11 +58,11 @@ INSTALLED_APPS = [
     "student",
     "teacher",
     "group",
-    "log",
+    # "log",
 ]
 
 MIDDLEWARE = [
-    "log.middleware.LogMiddleware",
+    # "log.middleware.LogMiddleware",
     "django.middleware.security.SecurityMiddleware",
     # Django doesn't support serving static assets in a production-ready way, so we use the
     # excellent WhiteNoise package to do so instead. The WhiteNoise middleware must be listed
