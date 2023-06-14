@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Add new student</h1>
-    <form action="{% url 'create_student' %}" method="post">
+    <form action="{% url 'create_student' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <p><input type="submit" value="Create student"></p>

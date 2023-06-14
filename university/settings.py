@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from dotenv import dotenv_values
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     "teacher",
     "group",
     # "log",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -166,7 +168,31 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
 
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+    # Enable WhiteNoise's GZip and Brotli compression of static assets:
+    # https://whitenoise.readthedocs.io/en/latest/django.html#add-compression-and-caching-support
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# Don't store the original (un-hashed filename) version of static files, to reduce slug size:
+# https://whitenoise.readthedocs.io/en/latest/django.html#WHITENOISE_KEEP_ONLY_HASHED_FILES
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+if not IS_HEROKU_APP:
+    env_var = dotenv_values(".env")
+    AWS_ACCESS_KEY_ID = env_var["AWS_ACCESS_KEY_ID"]
+    AWS_SECRET_ACCESS_KEY = env_var["AWS_SECRET_ACCESS_KEY"]
+    AWS_STORAGE_BUCKET_NAME = env_var["AWS_STORAGE_BUCKET_NAME"]
+
+AWS_S3_REGION_NAME = "eu-north-1"

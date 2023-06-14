@@ -14,6 +14,7 @@ class StudentForm(ModelForm):
             "last_name",
             "age",
             "phone",
+            "photo",
             "group",
         ]
 
