@@ -8,11 +8,7 @@ from .forms import StudentForm
 
 
 def all_students(request):
-    # students_list = list(Student.objects.all().order_by("id").values())
     students_list = list(Student.objects.all().order_by("id"))
-    print("*********************************************************************")
-    # print(students_list_test)
-    # students_list = list(Student.objects.all().order_by("id"))
     return render(
         request, "student/all_students.html", {"students_list": students_list}
     )
@@ -42,7 +38,7 @@ def edit_student(request, student_id):
         return HttpResponseRedirect(reverse("all_students"))
     if request.method == "POST":
         if "edit" in request.POST:
-            form = StudentForm(request.POST, instance=student)
+            form = StudentForm(request.POST, request.FILES, instance=student)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
                 return HttpResponseRedirect(

@@ -13,6 +13,7 @@
             <th style="border: 1px solid black;">Patronymic</th>
             <th style="border: 1px solid black;">Birthday</th>
             <th style="border: 1px solid black;">Subject</th>
+            <th style="border: 1px solid black;">Photo</th>
         </tr>
         {% for teacher in teachers_list %}
         <tr style="border: 1px solid black;">
@@ -22,6 +23,7 @@
             <td style="border: 1px solid black;">{{ teacher.patronymic }}</td>
             <td style="border: 1px solid black;">{{ teacher.birthday }}</td>
             <td style="border: 1px solid black;">{{ teacher.subject }}</td>
+            <td style="border: 1px solid black;"><img src="{{ teacher.photo }}" alt="{{ teacher.photo }}" height="100"></td>
         </tr>
         {% endfor %}
     </table>

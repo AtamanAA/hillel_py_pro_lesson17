@@ -16,6 +16,7 @@ class TeacherForm(ModelForm):
             "patronymic",
             "birthday",
             "subject",
+            "photo",
         ]
 
         widgets = {
