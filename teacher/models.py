@@ -17,6 +17,11 @@ class Teacher(models.Model):
     patronymic = models.CharField(max_length=40)
     birthday = models.DateField()
     subject = models.ForeignKey(Subject, null=True, on_delete=models.SET_NULL)
+    photo = models.ImageField(
+        upload_to="photo/teachers",
+        null=True,
+        default="photo/teachers/default_teacher_avatar.jpg",
+    )
 
     def __repr__(self):
         return f"{self.first_name} {self.last_name}"

@@ -17,6 +17,7 @@ def all_teachers(request):
             "patronymic": person.patronymic,
             "birthday": person.birthday,
             "subject": person.subject.name,
+            "photo": person.photo.url,
         }
         teachers_list.append(result)
     return render(
@@ -26,7 +27,7 @@ def all_teachers(request):
 
 def create_teacher(request):
     if request.method == "POST":
-        form = TeacherForm(request.POST)
+        form = TeacherForm(request.POST, request.FILES)
         if not form.is_valid():
             messages.error(request, "Form isn't valid. Try again!")
             return HttpResponseRedirect(reverse("create_teacher"))
@@ -48,7 +49,7 @@ def edit_teacher(request, teacher_id):
         return HttpResponseRedirect(reverse("all_teachers"))
     if request.method == "POST":
         if "edit" in request.POST:
-            form = TeacherForm(request.POST, instance=teacher)
+            form = TeacherForm(request.POST, request.FILES, instance=teacher)
             if not form.is_valid():
                 messages.error(request, "Form isn't valid. Try again!")
                 return HttpResponseRedirect(

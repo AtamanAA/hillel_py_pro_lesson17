@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Students{% endblock %}
 
@@ -12,6 +13,7 @@
             <th style="border: 1px solid black;">Last name</th>
             <th style="border: 1px solid black;">Age</th>
             <th style="border: 1px solid black;">Phone</th>
+            <th style="border: 1px solid black;">Photo</th>
         </tr>
         {% for student in students_list %}
         <tr style="border: 1px solid black;">
@@ -20,8 +22,13 @@
             <td style="border: 1px solid black;">{{ student.last_name }}</td>
             <td style="border: 1px solid black;">{{ student.age }}</td>
             <td style="border: 1px solid black;">{{ student.phone }}</td>
+            <td style="border: 1px solid black;"><img src="{{ student.photo.url }}" alt="{{ student.photo.url }}" height="100"></td>
         </tr>
         {% endfor %}
     </table>
     <p><a href="{% url 'create_student' %}">Create new student</a></p>
+
 {% endblock %}
+
+
+

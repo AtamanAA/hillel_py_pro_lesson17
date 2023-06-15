@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Edit teacher</h1>
-    <form action="{% url 'edit_teacher' form.instance.id %}" method="post">
+    <form action="{% url 'edit_teacher' form.instance.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <p><input type="submit" name="edit" value="Save teacher"></p>

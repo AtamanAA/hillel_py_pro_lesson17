@@ -136,3 +136,5 @@ dmypy.json
 
 # Log-file
 log/log_file.csv
+
+media/
