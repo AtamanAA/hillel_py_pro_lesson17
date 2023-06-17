@@ -1,5 +1,6 @@
 from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
 from django.core.exceptions import ValidationError
+from django import forms
 import phonenumbers
 
 from .models import Student
@@ -17,12 +18,21 @@ class StudentForm(ModelForm):
             "photo",
             "group",
         ]
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': "form-control", }),
+            'last_name': forms.TextInput(attrs={'class': "form-control", }),
+            'age': forms.NumberInput(attrs={'class': "form-control", }),
+            'phone': forms.TextInput(attrs={'class': "form-control", }),
+            'photo': forms.FileInput(attrs={'class': "form-control", }),
+        }
 
     group = ModelMultipleChoiceField(
         queryset=Group.objects.all(),
-        widget=CheckboxSelectMultiple(),
+        widget=CheckboxSelectMultiple(attrs={'class': "form-check form-check-inline", }),
         required=False,
     )
+
+
 
     def clean_phone(self):
         phone_raw = self.cleaned_data["phone"]
