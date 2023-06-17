@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Subject(models.Model):
-    name = models.CharField(max_length=80)
+    name = models.CharField(max_length=40)
 
     def __repr__(self):
         return f"{self.name}"
@@ -16,7 +16,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=40)
     patronymic = models.CharField(max_length=40)
     birthday = models.DateField()
-    subject = models.ForeignKey(Subject, null=True, on_delete=models.SET_NULL)
+    subject = models.ForeignKey(Subject, null=True, on_delete=models.CASCADE)
     photo = models.ImageField(
         upload_to="photo/teachers",
         null=True,

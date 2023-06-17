@@ -198,4 +198,3 @@ else:
     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 
 AWS_S3_REGION_NAME = "eu-north-1"
-

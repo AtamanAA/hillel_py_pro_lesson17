@@ -4,29 +4,42 @@
 {% block title %}Students{% endblock %}
 
 {% block content %}
-    <h1>Students list</h1>
 
-    <table style="border: 2px solid black; border-collapse: collapse;">
-        <tr>
-            <th style="border: 1px solid black;">ID</th>
-            <th style="border: 1px solid black;">First name</th>
-            <th style="border: 1px solid black;">Last name</th>
-            <th style="border: 1px solid black;">Age</th>
-            <th style="border: 1px solid black;">Phone</th>
-            <th style="border: 1px solid black;">Photo</th>
-        </tr>
+    <div style="display: flex; justify-content: space-between;">
+        <h1>University students</h1>
+        <div style="margin-top: auto; margin-bottom: auto;">
+            <a href="{% url 'create_student' %}" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">
+                Add new student
+            </a>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-1 g-4" style="justify-content: space-between">
         {% for student in students_list %}
-        <tr style="border: 1px solid black;">
-            <td style="border: 1px solid black;">{{ student.id }}</td>
-            <td style="border: 1px solid black;">{{ student.first_name }}</td>
-            <td style="border: 1px solid black;">{{ student.last_name }}</td>
-            <td style="border: 1px solid black;">{{ student.age }}</td>
-            <td style="border: 1px solid black;">{{ student.phone }}</td>
-            <td style="border: 1px solid black;"><img src="{{ student.photo.url }}" alt="{{ student.photo.url }}" height="100"></td>
-        </tr>
+            <div class="card mb-3" style="max-width: 400px;">
+                <div class="row g-0">
+                    <div class="col-md-4" style="display: flex; align-items: center; justify-content: center" >
+                        <img src="{{ student.photo.url }}" class="img-fluid rounded-start " alt="{{ student.first_name }}" style="max-width: 100px; max-height: 100px; object-fit: cover; object-position: 0% 0%;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ student.first_name }} {{ student.last_name }}</h5>
+                            <p class="card-text">Phone: {{ student.phone }}</p>
+                            <div>
+                                <p class="card-text" style="display: flex; justify-content: space-between;">
+                                    Age: {{ student.age }}
+                                    <a href="{% url 'edit_student' student.id %}" class="btn btn-outline-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true">
+                                        <img src="{% static 'icons/pencil-square.svg' %}" alt="edit" style="margin-bottom: 2px;">
+                                        Edit
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </table>
-    <p><a href="{% url 'create_student' %}">Create new student</a></p>
+    </div>
 
 {% endblock %}
 

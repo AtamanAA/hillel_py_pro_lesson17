@@ -17,7 +17,7 @@ def all_teachers(request):
             "patronymic": person.patronymic,
             "birthday": person.birthday,
             "subject": person.subject.name,
-            "photo": person.photo.url,
+            "photo": person.photo,
         }
         teachers_list.append(result)
     return render(
@@ -66,7 +66,8 @@ def edit_teacher(request, teacher_id):
             return redirect("all_teachers")
     else:
         form = TeacherForm(instance=teacher)
-        return render(request, "teacher/edit.html", {"form": form})
+        photo = teacher.photo
+        return render(request, "teacher/edit.html", {"form": form, "photo": photo})
 
 
 def all_subjects(request):

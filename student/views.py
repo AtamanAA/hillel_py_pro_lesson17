@@ -62,4 +62,5 @@ def edit_student(request, student_id):
     else:
         initial_groups = [group.id for group in student.group.all()]
         form = StudentForm(instance=student, initial={"group": initial_groups})
-        return render(request, "student/edit.html", {"form": form})
+        photo = student.photo
+        return render(request, "student/edit.html", {"form": form, "photo": photo})
