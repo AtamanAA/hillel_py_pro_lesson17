@@ -3,24 +3,39 @@
 {% block title %}Groups{% endblock %}
 
 {% block content %}
-    <h1>Groups list</h1>
+    <div class="col-12 col-lg-10 col-xl-8 col-xxl-6">
+        <div style="display: flex; justify-content: space-between;">
+            <h1>University groups</h1>
+            <div style="margin-top: auto; margin-bottom: auto;">
+                <a href="{% url 'create_group' %}" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">
+                    Add new group
+                </a>
+            </div>
+        </div>
 
-    <table style="border: 2px solid black; border-collapse: collapse;">
-        <tr>
-            <th style="border: 1px solid black;">ID</th>
-            <th style="border: 1px solid black;">Name</th>
-            <th style="border: 1px solid black;">Teacher</th>
-            <th style="border: 1px solid black;">Students in group</th>
-        </tr>
-        {% for group in groups_list %}
-        <tr style="border: 1px solid black;">
-            <td style="border: 1px solid black;">{{ group.id }}</td>
-            <td style="border: 1px solid black;">{{ group.name }}</td>
-            <td style="border: 1px solid black;">{{ group.teacher }}</td>
-            <td style="border: 1px solid black;">{{ group.students_count }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <p><a href="{% url 'create_group' %}">Create new group</a></p>
-    <p><a href="{% url 'student_to_group' %}">Update students in group</a></p>
+        <table class="table table-sm" style="width:80%">
+            <tr>
+                <th style="border: 1px solid black;">ID</th>
+                <th style="border: 1px solid black;">Name</th>
+                <th style="border: 1px solid black;">Teacher</th>
+                <th style="border: 1px solid black;">Students in group</th>
+            </tr>
+            {% for group in groups_list %}
+            <tr style="border: 1px solid black;">
+                <td style="border: 1px solid black;">{{ group.id }}</td>
+                <td style="border: 1px solid black;">{{ group.name }}</td>
+                <td style="border: 1px solid black;">{{ group.teacher }}</td>
+                <td style="border: 1px solid black;">{{ group.students_count }}</td>
+
+                <td style="border: 1px solid white;">
+                    <a href="{% url 'edit_group' group.id %}" class="btn btn-outline-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true">
+                        <img src="/static/icons/pencil-square.svg" alt="edit" style="margin-bottom: 2px;">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-outline-secondary" href="{% url 'student_to_group' %}" role="button">Update students in group</a>
+    </div>
 {% endblock %}

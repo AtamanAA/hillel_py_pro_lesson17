@@ -3,12 +3,19 @@
 {% block title %}Student to group{% endblock %}
 
 {% block content %}
-    <h1>Add student to group</h1>
-    <form action="{% url 'student_to_group' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p><input type="submit" name="refresh" value="Refresh students in choice group"></p>
-        <p><input type="submit" name="update" value="Update students in choice group"></p>
-    </form>
-    <p><a href="{% url 'all_groups' %}">Back to group page</a></p>
+    <div class="col-12 col-lg-10 col-xl-8 col-xxl-6">
+        <h1>Add student to group</h1>
+        <form action="{% url 'student_to_group' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input-group mb-3">
+                    <label class="input-group-text" style="width: 100px;">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <input class="btn btn-outline-success" type="submit" name="refresh" value="Refresh students in group">
+            <input class="btn btn-outline-success" type="submit" name="update" value="Update students in group">
+            <a class="btn btn-outline-secondary" href="{% url 'all_groups' %}" role="button">Back to group page</a>
+        </form>
+    </div>
 {% endblock %}

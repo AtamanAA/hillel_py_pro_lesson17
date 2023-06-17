@@ -3,12 +3,21 @@
 {% block title %}Group edit{% endblock %}
 
 {% block content %}
-    <h1>Edit group</h1>
-    <form action="{% url 'edit_group' form.instance.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p><input type="submit" name="edit" value="Save group"></p>
-        <p><input type="submit" name="delete" value="Delete group"></p>
-    </form>
-    <p><a href="{% url 'all_groups' %}">Back to group page</a></p>
+    <div class="col-12 col-lg-10 col-xl-8 col-xxl-6" style="display: flex;">
+        <div>
+            <h1>Edit group</h1>
+            <form action="{% url 'edit_group' form.instance.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" style="width: 100px;">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input class="btn btn-outline-success" type="submit" name="edit" value="Save group">
+                <input class="btn btn-outline-danger" type="submit" name="delete" value="Delete group">
+                <a class="btn btn-outline-secondary" href="{% url 'all_groups' %}" role="button">Back to groups page</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}
