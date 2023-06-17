@@ -19,20 +19,42 @@ class StudentForm(ModelForm):
             "group",
         ]
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': "form-control", }),
-            'last_name': forms.TextInput(attrs={'class': "form-control", }),
-            'age': forms.NumberInput(attrs={'class': "form-control", }),
-            'phone': forms.TextInput(attrs={'class': "form-control", }),
-            'photo': forms.FileInput(attrs={'class': "form-control", }),
+            "first_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "age": forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "phone": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "photo": forms.FileInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
         }
 
     group = ModelMultipleChoiceField(
         queryset=Group.objects.all(),
-        widget=CheckboxSelectMultiple(attrs={'class': "form-check form-check-inline", }),
+        widget=CheckboxSelectMultiple(
+            attrs={
+                "class": "form-check form-check-inline",
+            }
+        ),
         required=False,
     )
-
-
 
     def clean_phone(self):
         phone_raw = self.cleaned_data["phone"]

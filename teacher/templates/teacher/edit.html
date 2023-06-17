@@ -3,13 +3,24 @@
 {% block title %}Teacher edit{% endblock %}
 
 {% block content %}
-    <h1>Edit teacher</h1>
-    <form action="{% url 'edit_teacher' form.instance.id %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p><input type="submit" name="edit" value="Save teacher"></p>
-        <p><input type="submit" name="delete" value="Delete teacher"></p>
-    </form>
-    <p><a href="{% url 'create_subject' %}">Create new subject</a></p>
-    <p><a href="{% url 'all_teachers' %}">Back to teachers page</a></p>
+    <div class="col-12 col-lg-10 col-xl-8 col-xxl-6" style="display: flex;">
+        <div>
+            <h1>Edit teacher</h1>
+            <form action="{% url 'edit_teacher' form.instance.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" style="width: 100px;">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input class="btn btn-outline-success" type="submit" name="edit" value="Save teacher">
+                <input class="btn btn-outline-danger" type="submit" name="delete" value="Delete teacher">
+                <a class="btn btn-outline-secondary" href="{% url 'all_teachers' %}" role="button">Back to teachers page</a>
+            </form>
+        </div>
+        <div class="col-md-3" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center;" >
+            <img src="{{ photo.url }}" class="img-fluid rounded-start " alt="{{ teacher.first_name }}" style="margin-top: 55px; margin-left: 16px;">
+        </div>
+    </div>
 {% endblock %}

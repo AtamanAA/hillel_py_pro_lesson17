@@ -1,4 +1,5 @@
 from django.forms import ModelForm, DateInput
+from django import forms
 
 from .models import Teacher, Subject
 
@@ -20,7 +21,36 @@ class TeacherForm(ModelForm):
         ]
 
         widgets = {
-            "birthday": DateInputCustom(),
+            "first_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "patronymic": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "birthday": DateInputCustom(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+            "subject": forms.Select(
+                attrs={
+                    "class": "form-select",
+                }
+            ),
+            "photo": forms.FileInput(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
         }
 
 
